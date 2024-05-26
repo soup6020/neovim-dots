@@ -612,7 +612,7 @@ require("lazy").setup({
 					dashboard.button("SPC s g", "󰊄  Live grep"),
 					dashboard.button("u", "  Update plugins", "<cmd>Lazy sync<CR>"),
 					dashboard.button("q", "󰅚  Quit", "<cmd>qa<CR>"),
-					dashboard.button("l", "󰒲 Lazy", "<cmd>Lazy<CR>"),
+					dashboard.button("l", "󰒲  Lazy", "<cmd>Lazy<CR>"),
 				},
 				position = "center",
 			}
