@@ -72,9 +72,10 @@ require("lazy").setup({
 		event = "VimEnter", -- Sets the loading event to 'VimEnter'
 		config = function() -- This is the function that runs, AFTER loading
 			require("which-key").setup()
+			local wk = require("which-key")
 
 			-- Document existing key chains
-			require("which-key").add({
+			wk.add({
 				{ "<leader>c", group = "[C]ode" },
 				{ "<leader>d", group = "[D]ocument" },
 				{ "<leader>r", group = "[R]ename" },
@@ -378,7 +379,6 @@ require("lazy").setup({
 		build = ":TSUpdate",
 		config = function()
 			-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-
 			---@diagnostic disable-next-line: missing-fields
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = { "bash", "c", "html", "lua", "markdown", "vim", "vimdoc" },
@@ -387,6 +387,7 @@ require("lazy").setup({
 				highlight = { enable = true },
 				indent = { enable = true },
 				update_strategy = "git",
+				prefer_git = true,
 			})
 		end,
 	},
@@ -423,6 +424,23 @@ require("lazy").setup({
 				require("hex").toggle()
 			end, { desc = "Toggle hex view" })
 		end,
+	},
+	{
+		"AckslD/nvim-neoclip.lua",
+		dependencies = {
+			{ "nvim-telescope/telescope.nvim" },
+		},
+		config = function()
+			require("neoclip").setup()
+		end,
+	},
+	{
+		"gbprod/cutlass.nvim",
+		opts = {
+			-- your configuration comes here
+			-- or don't set opts to use the default settings
+			-- refer to the configuration section below
+		},
 	},
 	{
 		"goolord/alpha-nvim",
@@ -531,12 +549,12 @@ require("lazy").setup({
 						short_fn = vim.fn.fnamemodify(fn, ":~")
 					end
 
-					if #short_fn > target_width then
-						short_fn = plenary_path.new(short_fn):shorten(1, { -2, -1 })
-						if #short_fn > target_width then
-							short_fn = plenary_path.new(short_fn):shorten(1, { -1 })
-						end
-					end
+					--	if #short_fn > target_width then
+					--		short_fn = plenary_path.new(short_fn):shorten(1, { -2, -1 })
+					--		if #short_fn > target_width then
+					--			short_fn = plenary_path.new(short_fn):shorten(1, { -1 })
+					--		end
+					--	end
 
 					local shortcut = tostring(i + start - 1)
 
